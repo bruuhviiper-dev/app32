@@ -1,0 +1,102 @@
+[
+  {
+    "id": "fofas",
+    "name": "Fofas",
+    "emoji": "💕",
+    "gradient": [
+      "#FF5F6D",
+      "#FFC371"
+    ],
+    "premium": false
+  },
+  {
+    "id": "romanticas",
+    "name": "Românticas",
+    "emoji": "❤️",
+    "gradient": [
+      "#e53935",
+      "#e35d5b"
+    ],
+    "premium": false
+  },
+  {
+    "id": "engracadas",
+    "name": "Engraçadas",
+    "emoji": "😂",
+    "gradient": [
+      "#f7971e",
+      "#ffd200"
+    ],
+    "premium": false
+  },
+  {
+    "id": "criativas",
+    "name": "Criativas",
+    "emoji": "✨",
+    "gradient": [
+      "#8E2DE2",
+      "#4A00E0"
+    ],
+    "premium": false
+  },
+  {
+    "id": "nerds",
+    "name": "Nerds & Geek",
+    "emoji": "🤓",
+    "gradient": [
+      "#2193b0",
+      "#6dd5ed"
+    ],
+    "premium": false
+  },
+  {
+    "id": "de_bar",
+    "name": "De Bar & Balada",
+    "emoji": "🍻",
+    "gradient": [
+      "#F09819",
+      "#EDDE5D"
+    ],
+    "premium": false
+  },
+  {
+    "id": "elogios",
+    "name": "Elogios",
+    "emoji": "😍",
+    "gradient": [
+      "#FF0080",
+      "#FF8C00"
+    ],
+    "premium": false
+  },
+  {
+    "id": "atrevidas",
+    "name": "Atrevidas",
+    "emoji": "😏",
+    "gradient": [
+      "#c31432",
+      "#240b36"
+    ],
+    "premium": false
+  },
+  {
+    "id": "classicas",
+    "name": "Clássicas",
+    "emoji": "⭐",
+    "gradient": [
+      "#FFB75E",
+      "#ED8F03"
+    ],
+    "premium": false
+  },
+  {
+    "id": "para_crush",
+    "name": "Para o Crush",
+    "emoji": "💘",
+    "gradient": [
+      "#FC466B",
+      "#3F5EFB"
+    ],
+    "premium": false
+  }
+]
