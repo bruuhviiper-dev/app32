@@ -21,6 +21,7 @@ import '../data/story_backgrounds.dart';
 import '../data/textures.dart';
 import '../services/ads_service.dart';
 import '../services/app_state.dart';
+import '../widgets/banner_ad.dart';
 
 /// Editor PRO: cria uma frase como imagem (formatos, fontes, cores, fundos,
 /// texturas, fotos reais, sua foto, filtros, assinatura e salvar na galeria).
@@ -159,8 +160,7 @@ class _CreateScreenState extends State<CreateScreen> {
       final file =
           File('${dir.path}/frase_${DateTime.now().millisecondsSinceEpoch}.png');
       await file.writeAsBytes(bytes);
-      await Share.shareXFiles([XFile(file.path)],
-          text: noWatermark ? '' : 'Feito no app Cantadas 🫂');
+      await Share.shareXFiles([XFile(file.path)]);
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -273,9 +273,10 @@ class _CreateScreenState extends State<CreateScreen> {
 
     final sig = state.customSignature.isNotEmpty
         ? state.customSignature
-        : (state.canRemoveWatermark ? '' : '🫂 Cantadas');
+        : (state.canRemoveWatermark ? '' : '🔥 Cantadas');
 
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(title: const Text('Criar (Editor)')),
       body: ListView(
         padding: EdgeInsets.fromLTRB(
@@ -732,7 +733,7 @@ class _CreateScreenState extends State<CreateScreen> {
             onPressed: () {
               final t = _controller.text.trim();
               if (t.isNotEmpty) {
-                Share.share('$t\n\n🫂 Cantadas');
+                Share.share(t);
               }
             },
             icon: const Icon(Icons.text_fields_rounded),

@@ -11,25 +11,25 @@ import 'package:flutter/material.dart';
 class ProceduralBg {
   ProceduralBg._();
 
-  /// Paletas base (gradiente) QUENTES/AFETIVAS — clima de amizade (azul-marinho
-  /// + dourado da capa, hora dourada, festa). Bom contraste pra texto claro.
+  /// Paletas base (gradiente) PAIXÃO/FOGO — vermelho, laranja, magenta e
+  /// crimson quentes. Alto contraste pra texto claro.
   static const List<List<Color>> palettes = [
-    [Color(0xFF01316C), Color(0xFFFDC302)], // azul-marinho -> ouro (capa)
-    [Color(0xFF2B1B3A), Color(0xFFE8A87C)], // pôr do sol quente
-    [Color(0xFFF7971E), Color(0xFFFFD200)], // dourado
-    [Color(0xFFEB3349), Color(0xFFF45C43)], // coral quente
-    [Color(0xFF6D4C1E), Color(0xFFFDC302)], // âmbar -> ouro
-    [Color(0xFF5F2C82), Color(0xFFC471F5)], // festa lilás
-    [Color(0xFFFF5858), Color(0xFFF857A6)], // rosa festivo
+    [Color(0xFF2B0010), Color(0xFFFF4B2B)], // crimson -> laranja
+    [Color(0xFF6A0136), Color(0xFFFF2E63)], // vinho -> rosa-choque
+    [Color(0xFF3A001F), Color(0xFFF12711)], // escuro -> vermelho
+    [Color(0xFF1A0022), Color(0xFFC9184A)], // roxo escuro -> carmim
+    [Color(0xFF7B0828), Color(0xFFFF7A00)], // bordô -> laranja
+    [Color(0xFF2C0008), Color(0xFFF5AF19)], // brasa -> âmbar
+    [Color(0xFF4A002A), Color(0xFFFF3CAC)], // vinho -> magenta
+    [Color(0xFF240014), Color(0xFFEB3349)], // escuro -> coral quente
+    [Color(0xFF8E0E00), Color(0xFFFF4B2B)], // fogo profundo
+    [Color(0xFFC9184A), Color(0xFFFF7A00)], // carmim -> laranja
+    [Color(0xFFB91D73), Color(0xFFF953C6)], // magenta intenso
+    [Color(0xFFEE0979), Color(0xFFFF6A00)], // rosa -> laranja
+    [Color(0xFF200122), Color(0xFF6F0000)], // brasa escura
+    [Color(0xFF44107A), Color(0xFFFF1361)], // roxo -> rosa-fogo
+    [Color(0xFFCB356B), Color(0xFFBD3F32)], // rosa -> tijolo
     [Color(0xFFF12711), Color(0xFFF5AF19)], // laranja quente
-    [Color(0xFF001536), Color(0xFF01316C)], // azul-marinho profundo
-    [Color(0xFFF6D365), Color(0xFFFDA085)], // pêssego
-    [Color(0xFFEE9CA7), Color(0xFFB24592)], // rosa -> vinho
-    [Color(0xFF667EEA), Color(0xFF764BA2)], // azul -> roxo
-    [Color(0xFF0B486B), Color(0xFFFDC302)], // azul -> ouro
-    [Color(0xFF3A2C2A), Color(0xFFF2A65A)], // hora dourada
-    [Color(0xFFFC466B), Color(0xFF3F5EFB)], // rosa -> azul
-    [Color(0xFF232526), Color(0xFF895A7C)], // crepúsculo
   ];
 
   static const int _styles = 7;
@@ -174,23 +174,21 @@ class ProceduralPainter extends CustomPainter {
     }
   }
 
+  /// Brasas subindo (pontinhos de luz quente) — clima de fogo.
   void _hearts(Canvas c, _Rnd r, double w, double h) {
-    final n = 7 + r.intg(8);
+    final n = 26 + r.intg(24);
     for (var i = 0; i < n; i++) {
-      final s = r.range(w * 0.05, w * 0.14);
-      _heart(c, Offset(r.range(0, w), r.range(0, h)), s,
-          Colors.white.withValues(alpha: r.range(0.05, 0.14)));
+      final s = r.range(1.5, 4.5);
+      final o = Offset(r.range(0, w), r.range(h * 0.25, h));
+      c.drawCircle(
+        o,
+        s,
+        Paint()
+          ..color = Color.lerp(const Color(0xFFFFC148), const Color(0xFFFF5A1F),
+                  r.range(0, 1))!
+              .withValues(alpha: r.range(0.25, 0.7)),
+      );
     }
-  }
-
-  void _heart(Canvas c, Offset o, double s, Color color) {
-    final p = Path();
-    p.moveTo(o.dx, o.dy + s * 0.3);
-    p.cubicTo(o.dx - s * 0.5, o.dy - s * 0.3, o.dx - s * 0.5, o.dy + s * 0.35,
-        o.dx, o.dy + s * 0.7);
-    p.cubicTo(o.dx + s * 0.5, o.dy + s * 0.35, o.dx + s * 0.5, o.dy - s * 0.3,
-        o.dx, o.dy + s * 0.3);
-    c.drawPath(p, Paint()..color = color);
   }
 
   void _sparkles(Canvas c, _Rnd r, double w, double h) {
@@ -226,20 +224,30 @@ class ProceduralPainter extends CustomPainter {
     }
   }
 
+  /// Línguas de fogo subindo do rodapé (camadas translúcidas laranja/amarelo).
   void _confetti(Canvas c, _Rnd r, double w, double h) {
-    final n = 18 + r.intg(16);
+    final n = 4 + r.intg(3);
     for (var i = 0; i < n; i++) {
-      final o = Offset(r.range(0, w), r.range(0, h));
-      final s = r.range(4, 10);
-      c.save();
-      c.translate(o.dx, o.dy);
-      c.rotate(r.range(0, math.pi));
-      c.drawRect(
-        Rect.fromCenter(center: Offset.zero, width: s, height: s * 0.5),
-        Paint()..color = Colors.white.withValues(alpha: r.range(0.08, 0.2)),
-      );
-      c.restore();
+      final cx = r.range(w * 0.1, w * 0.9);
+      final fw = r.range(w * 0.12, w * 0.22);
+      final fh = r.range(h * 0.18, h * 0.34);
+      _flame(c, cx, h + 8, fw, fh,
+          const Color(0xFFFF7A1F).withValues(alpha: 0.16));
+      _flame(c, cx, h + 8, fw * 0.6, fh * 0.7,
+          const Color(0xFFFFD34E).withValues(alpha: 0.20));
     }
+  }
+
+  void _flame(Canvas c, double cx, double baseY, double fw, double fh,
+      Color color) {
+    final p = Path()
+      ..moveTo(cx - fw / 2, baseY)
+      ..cubicTo(cx - fw * 0.35, baseY - fh * 0.5, cx - fw * 0.12,
+          baseY - fh * 0.72, cx, baseY - fh)
+      ..cubicTo(cx + fw * 0.12, baseY - fh * 0.72, cx + fw * 0.35,
+          baseY - fh * 0.5, cx + fw / 2, baseY)
+      ..close();
+    c.drawPath(p, Paint()..color = color);
   }
 
   @override

@@ -6,6 +6,20 @@ import 'package:url_launcher/url_launcher.dart';
 class ShareHelper {
   ShareHelper._();
 
+  static const _channel = MethodChannel('cantadas/share');
+
+  /// Envia a IMAGEM [path] direto pro WhatsApp (com legenda [text]).
+  /// Retorna true se o WhatsApp abriu; false se não está instalado.
+  static Future<bool> sendImageToWhatsApp(String path, String text) async {
+    try {
+      final ok = await _channel.invokeMethod<bool>(
+          'toWhatsAppImage', {'path': path, 'text': text});
+      return ok ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
   static Future<void> share(String text) async {
     await Share.share(text);
   }

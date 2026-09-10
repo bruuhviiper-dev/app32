@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../data/image_backgrounds.dart';
 import '../data/models.dart';
+import '../widgets/banner_ad.dart';
 import '../widgets/verse_tile.dart';
 import 'create_screen.dart';
 
@@ -36,6 +37,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     final verses = widget.category.verses;
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(
         title: Text('${widget.category.emoji}  ${widget.category.name}'),
       ),

@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../data/app_info.dart';
 import '../data/app_theme.dart';
+import '../widgets/banner_ad.dart';
 import 'settings_screen.dart';
 
 /// Aba "Mais": lembrete diário, avaliar, compartilhar o app e cross-promoção
@@ -42,6 +43,7 @@ class MoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final apps = AppInfo.otherApps;
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(title: const Text('Mais')),
       body: ListView(
         children: [

@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../data/app_info.dart';
 import '../services/app_state.dart';
 import '../services/notification_service.dart';
+import '../widgets/banner_ad.dart';
 
 /// Configura o lembrete diário de motivação (notificação).
 class SettingsScreen extends StatelessWidget {
@@ -17,6 +18,7 @@ class SettingsScreen extends StatelessWidget {
     final time = TimeOfDay(hour: state.reminderHour, minute: state.reminderMin);
 
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(title: const Text('Lembrete diário')),
       body: ListView(
         children: [

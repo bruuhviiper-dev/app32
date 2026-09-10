@@ -1,61 +1,91 @@
 [
   {
-    "id": "fofas",
-    "name": "Fofas",
-    "emoji": "💕",
-    "gradient": [
-      "#FF5F6D",
-      "#FFC371"
-    ],
-    "premium": false
-  },
-  {
     "id": "romanticas",
-    "name": "Românticas",
+    "name": "Cantadas Românticas",
     "emoji": "❤️",
     "gradient": [
-      "#e53935",
-      "#e35d5b"
+      "#C9184A",
+      "#FF2E63"
     ],
     "premium": false
   },
   {
     "id": "engracadas",
-    "name": "Engraçadas",
+    "name": "Cantadas Engraçadas",
     "emoji": "😂",
     "gradient": [
-      "#f7971e",
-      "#ffd200"
+      "#F12711",
+      "#F5AF19"
     ],
     "premium": false
   },
   {
-    "id": "criativas",
-    "name": "Criativas",
-    "emoji": "✨",
+    "id": "de_amor",
+    "name": "Cantadas de Amor",
+    "emoji": "💗",
     "gradient": [
-      "#8E2DE2",
-      "#4A00E0"
+      "#E11D48",
+      "#FF4B6E"
     ],
     "premium": false
   },
   {
-    "id": "nerds",
-    "name": "Nerds & Geek",
-    "emoji": "🤓",
+    "id": "para_conquistar",
+    "name": "Para Conquistar",
+    "emoji": "🎯",
     "gradient": [
-      "#2193b0",
-      "#6dd5ed"
+      "#FF2E63",
+      "#C9184A"
     ],
     "premium": false
   },
   {
-    "id": "de_bar",
-    "name": "De Bar & Balada",
-    "emoji": "🍻",
+    "id": "para_ela",
+    "name": "Para Conquistar Ela",
+    "emoji": "👩",
     "gradient": [
-      "#F09819",
-      "#EDDE5D"
+      "#FF0080",
+      "#FF8C00"
+    ],
+    "premium": false
+  },
+  {
+    "id": "para_ele",
+    "name": "Para Conquistar Ele",
+    "emoji": "👨",
+    "gradient": [
+      "#8E0E00",
+      "#FF4B2B"
+    ],
+    "premium": false
+  },
+  {
+    "id": "flerte",
+    "name": "Flerte & Paquera",
+    "emoji": "😉",
+    "gradient": [
+      "#FF4B2B",
+      "#B91D73"
+    ],
+    "premium": false
+  },
+  {
+    "id": "para_crush",
+    "name": "Para o Crush",
+    "emoji": "💘",
+    "gradient": [
+      "#FF416C",
+      "#C9184A"
+    ],
+    "premium": false
+  },
+  {
+    "id": "fofas",
+    "name": "Fofas",
+    "emoji": "💕",
+    "gradient": [
+      "#FF416C",
+      "#FF4B2B"
     ],
     "premium": false
   },
@@ -74,8 +104,48 @@
     "name": "Atrevidas",
     "emoji": "😏",
     "gradient": [
-      "#c31432",
-      "#240b36"
+      "#6A0136",
+      "#FF2E63"
+    ],
+    "premium": false
+  },
+  {
+    "id": "indiretas",
+    "name": "Indiretas",
+    "emoji": "🫣",
+    "gradient": [
+      "#6A0136",
+      "#FF2E63"
+    ],
+    "premium": false
+  },
+  {
+    "id": "curtas",
+    "name": "Curtas",
+    "emoji": "✂️",
+    "gradient": [
+      "#F12711",
+      "#F5AF19"
+    ],
+    "premium": false
+  },
+  {
+    "id": "criativas",
+    "name": "Criativas",
+    "emoji": "✨",
+    "gradient": [
+      "#B91D73",
+      "#F953C6"
+    ],
+    "premium": false
+  },
+  {
+    "id": "nerds",
+    "name": "Nerds & Geek",
+    "emoji": "🤓",
+    "gradient": [
+      "#44107A",
+      "#FF1361"
     ],
     "premium": false
   },
@@ -84,18 +154,38 @@
     "name": "Clássicas",
     "emoji": "⭐",
     "gradient": [
-      "#FFB75E",
-      "#ED8F03"
+      "#EE0979",
+      "#FF6A00"
     ],
     "premium": false
   },
   {
-    "id": "para_crush",
-    "name": "Para o Crush",
-    "emoji": "💘",
+    "id": "de_bar",
+    "name": "De Bar & Balada",
+    "emoji": "🍻",
     "gradient": [
-      "#FC466B",
-      "#3F5EFB"
+      "#FF7A00",
+      "#F5AF19"
+    ],
+    "premium": false
+  },
+  {
+    "id": "bom_dia",
+    "name": "De Bom Dia",
+    "emoji": "☀️",
+    "gradient": [
+      "#FF7A00",
+      "#F5AF19"
+    ],
+    "premium": false
+  },
+  {
+    "id": "boa_noite",
+    "name": "De Boa Noite",
+    "emoji": "🌙",
+    "gradient": [
+      "#44107A",
+      "#FF1361"
     ],
     "premium": false
   }

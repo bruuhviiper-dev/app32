@@ -9,6 +9,7 @@ import '../data/models.dart';
 import '../data/story_backgrounds.dart';
 import '../data/verses.dart';
 import '../services/app_state.dart';
+import '../widgets/banner_ad.dart';
 import '../widgets/share_helper.dart';
 import '../widgets/verse_image.dart';
 import 'category_screen.dart';
@@ -23,6 +24,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<AppState>();
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(
         title: const Text('Cantadas'),
         titleSpacing: 12,
@@ -232,7 +234,7 @@ class _MessageOfDayState extends State<_MessageOfDay> {
 
   @override
   Widget build(BuildContext context) {
-    final share = '${_msg.text}\n\n💘 Cantadas';
+    final share = _msg.text;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -284,7 +286,7 @@ class _MessageOfDayState extends State<_MessageOfDay> {
         SizedBox(
           width: double.infinity,
           child: FilledButton.icon(
-            onPressed: () => ShareHelper.sendToWhatsApp(_msg.text),
+            onPressed: () => sendVerseImageToWhatsApp(_key, _msg.text),
             icon: const Icon(Icons.send_rounded, size: 20),
             label: const Text('Mandar no Zap',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),

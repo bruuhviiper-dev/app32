@@ -16,7 +16,6 @@ import 'services/ads_service.dart';
 import 'services/app_state.dart';
 import 'services/notification_service.dart';
 import 'services/purchase_service.dart';
-import 'widgets/banner_ad.dart';
 
 /// Navegador raiz do app.
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -164,17 +163,10 @@ class _HomeShellState extends State<HomeShell> {
         }
       },
       child: Scaffold(
-        body: Column(
+        body: IndexedStack(
+          index: _index,
           children: [
-            Expanded(
-              child: IndexedStack(
-                index: _index,
-                children: [
-                  for (var i = 0; i < _roots.length; i++) _tabNavigator(i)
-                ],
-              ),
-            ),
-            const BannerPlaceholder(),
+            for (var i = 0; i < _roots.length; i++) _tabNavigator(i)
           ],
         ),
         bottomNavigationBar: Container(

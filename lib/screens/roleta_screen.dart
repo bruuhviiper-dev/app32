@@ -7,12 +7,14 @@ import 'package:provider/provider.dart';
 import '../data/models.dart';
 import '../data/verses.dart';
 import '../services/app_state.dart';
-import '../widgets/chat_card.dart';
+import '../widgets/banner_ad.dart';
 import '../widgets/share_helper.dart';
+import '../widgets/verse_image.dart';
+import 'create_screen.dart';
 
 /// Roleta de Cantadas: sorteia uma cantada (opcionalmente de uma categoria) e
-/// mostra em estilo "print de conversa". Botões pra mandar no Zap, copiar,
-/// compartilhar o print e favoritar. É o coração divertido do app.
+/// mostra sobre um fundo de FOGO (a identidade do app). Botões pra mandar no
+/// Zap, copiar, compartilhar a imagem e favoritar.
 class RoletaScreen extends StatefulWidget {
   const RoletaScreen({super.key});
 
@@ -22,13 +24,27 @@ class RoletaScreen extends StatefulWidget {
 
 class _RoletaScreenState extends State<RoletaScreen> {
   final _rng = Random();
-  final _printKey = GlobalKey();
+  final _imgKey = GlobalKey();
   String? _catId; // null = todas
   late Verse _current;
+  late List<Color> _gradient;
+
+  // Gradientes PAIXÃO/FOGO usados no card compartilhável.
+  static const _fireGradients = <List<Color>>[
+    [Color(0xFFFF416C), Color(0xFFFF4B2B)],
+    [Color(0xFFC9184A), Color(0xFFFF2E63)],
+    [Color(0xFFF12711), Color(0xFFF5AF19)],
+    [Color(0xFF6A0136), Color(0xFFFF7A00)],
+    [Color(0xFFEE0979), Color(0xFFFF6A00)],
+    [Color(0xFF8E0E00), Color(0xFFFF4B2B)],
+    [Color(0xFFB91D73), Color(0xFFF953C6)],
+    [Color(0xFF200122), Color(0xFF6F0000)],
+  ];
 
   @override
   void initState() {
     super.initState();
+    _gradient = _fireGradients.first;
     _current = _pool().isEmpty ? const Verse('...') : _random();
   }
 
@@ -39,22 +55,21 @@ class _RoletaScreenState extends State<RoletaScreen> {
 
   Verse _random() {
     final pool = _pool();
+    _gradient = _fireGradients[_rng.nextInt(_fireGradients.length)];
     return pool[_rng.nextInt(pool.length)];
   }
 
-  void _shuffle() {
-    setState(() => _current = _random());
-  }
+  void _shuffle() => setState(() => _current = _random());
 
   @override
   Widget build(BuildContext context) {
     final state = context.watch<AppState>();
     final fav = state.isFavorite(_current.id);
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(title: const Text('🎲 Roleta de Cantadas')),
       body: Column(
         children: [
-          // Filtro por categoria (todas + cada uma)
           SizedBox(
             height: 46,
             child: ListView(
@@ -69,12 +84,31 @@ class _RoletaScreenState extends State<RoletaScreen> {
           ),
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(18, 8, 18, 18),
+              padding: const EdgeInsets.fromLTRB(18, 10, 18, 18),
               child: Column(
                 children: [
-                  ChatCard(text: _current.text, captureKey: _printKey),
+                  // Card de FOGO com a cantada (compartilhável como imagem)
+                  AspectRatio(
+                    aspectRatio: 4 / 5,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        boxShadow: [
+                          BoxShadow(
+                              color: _gradient.last.withValues(alpha: 0.40),
+                              blurRadius: 22,
+                              offset: const Offset(0, 10)),
+                        ],
+                      ),
+                      child: VerseImageCard(
+                        verse: _current,
+                        gradient: _gradient,
+                        captureKey: _imgKey,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 20),
-                  // Botão grande de sortear
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton.icon(
@@ -91,12 +125,11 @@ class _RoletaScreenState extends State<RoletaScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  // Mandar no Zap (destaque verde)
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton.icon(
                       onPressed: () =>
-                          ShareHelper.sendToWhatsApp(_current.text),
+                          sendVerseImageToWhatsApp(_imgKey, _current.text),
                       icon: const Icon(Icons.send_rounded, size: 20),
                       label: Text('Mandar no Zap',
                           style: GoogleFonts.poppins(
@@ -123,10 +156,17 @@ class _RoletaScreenState extends State<RoletaScreen> {
                         },
                       ),
                       _action(
+                        icon: Icons.edit_rounded,
+                        label: 'Editar',
+                        onTap: () => Navigator.of(context, rootNavigator: true)
+                            .push(MaterialPageRoute(
+                                builder: (_) =>
+                                    CreateScreen(initialText: _current.text))),
+                      ),
+                      _action(
                         icon: Icons.ios_share_rounded,
-                        label: 'Print',
-                        onTap: () => shareChatImage(_printKey,
-                            text: '${_current.text}\n\n💘 Cantadas'),
+                        label: 'Compartilhar',
+                        onTap: () => shareVerseImage(_imgKey),
                       ),
                       _action(
                         icon: fav
@@ -180,7 +220,7 @@ class _RoletaScreenState extends State<RoletaScreen> {
 
   void _toast(String m) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(m), duration: const Duration(seconds: 2)));
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(m), duration: const Duration(seconds: 2)));
   }
 }

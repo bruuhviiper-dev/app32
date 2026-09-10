@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../services/app_state.dart';
+import '../widgets/banner_ad.dart';
 import '../widgets/verse_tile.dart';
 
 /// Frases favoritadas pelo usuário (salvas localmente).
@@ -14,6 +15,7 @@ class FavoritesScreen extends StatelessWidget {
     final favs = state.favoriteVerses;
 
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(title: const Text('Favoritos')),
       body: favs.isEmpty
           ? Center(

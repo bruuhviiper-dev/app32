@@ -6,6 +6,7 @@ import '../data/models.dart';
 import '../screens/create_screen.dart';
 import '../services/app_state.dart';
 import 'share_helper.dart';
+import 'verse_image.dart';
 
 /// Cartão de uma frase, com favoritar, editar, copiar e compartilhar.
 class VerseTile extends StatelessWidget {
@@ -58,19 +59,20 @@ class VerseTile extends StatelessWidget {
                   tooltip: 'Copiar',
                   icon: const Icon(Icons.copy_rounded),
                   onPressed: () async {
-                    await ShareHelper.copy(verse.shareText);
+                    await ShareHelper.copy(verse.text);
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Copiado!')),
+                        const SnackBar(
+                            content: Text('Cantada copiada! Cola no chat 😏')),
                       );
                     }
                   },
                 ),
                 const Spacer(),
                 IconButton(
-                  tooltip: 'Compartilhar',
+                  tooltip: 'Compartilhar imagem',
                   icon: const Icon(Icons.share_rounded),
-                  onPressed: () => ShareHelper.share(verse.shareText),
+                  onPressed: () => renderAndShareVerse(context, verse),
                 ),
               ],
             ),

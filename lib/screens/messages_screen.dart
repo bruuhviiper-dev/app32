@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../data/greeting_generator.dart';
 import '../data/models.dart';
 import '../services/app_state.dart';
+import '../widgets/banner_ad.dart';
 import '../widgets/share_helper.dart';
 import 'create_screen.dart';
 
@@ -20,6 +21,7 @@ class MessagesScreen extends StatelessWidget {
     final itemCount = GreetingGenerator.total;
 
     return Scaffold(
+      bottomNavigationBar: const BannerPlaceholder(),
       appBar: AppBar(title: const Text('Cantadas')),
       body: ListView.builder(
         padding: EdgeInsets.fromLTRB(16, 12, 16, 24 + MediaQuery.of(context).padding.bottom),
@@ -27,7 +29,7 @@ class MessagesScreen extends StatelessWidget {
         itemBuilder: (context, i) {
           final msgIndex = i;
           final text = GreetingGenerator.byIndex(msgIndex);
-          final share = '$text\n\n🫂 Cantadas';
+          final share = text;
           final verse = Verse(text);
           final fav = state.isFavorite(verse.id);
           return Card(

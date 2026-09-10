@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'app_info.dart';
-
 /// Uma mensagem (texto + rótulo opcional, ex.: "Bom dia").
 class Verse {
   const Verse(this.text, [this.reference = '']);
@@ -11,11 +9,10 @@ class Verse {
 
   String get id => '$reference::${text.hashCode}';
 
-  /// Texto pronto pra compartilhar (com assinatura + link do app = tráfego orgânico).
-  String get shareText {
-    final base = reference.isEmpty ? text : '$text\n— $reference';
-    return '$base\n\n🫂 ${AppInfo.appName}\n${AppInfo.shareFooter}';
-  }
+  /// Texto pronto pra compartilhar — LIMPO (só a cantada), sem propaganda no
+  /// meio da mensagem. A divulgação do app fica na imagem (marca d'água) e nas
+  /// telas próprias, não grudada na cantada enviada pro crush.
+  String get shareText => reference.isEmpty ? text : '$text\n— $reference';
 }
 
 /// Categoria de versículos (ex.: Fé, Esperança, Amor...).

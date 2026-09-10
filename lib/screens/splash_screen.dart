@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../data/app_info.dart';
 
-/// Abertura da marca (Frases de Amizade) — fundo rosa em gradiente, com animação de
+/// Abertura da marca (Cantadas) — fundo FOGO em gradiente, com animação de
 /// escala/fade. Desenhada por cima do app e esmaece (sem "piscar"), ver
 /// _RootGate no main. SafeArea garante que a assinatura não encoste na barra de
 /// navegação (edge-to-edge).
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF0f9b8e), Color(0xFF3ef07d)],
+            colors: [Color(0xFFFF4B2B), Color(0xFFC9184A)],
           ),
         ),
         child: SafeArea(
@@ -66,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
                             ],
                           ),
                         ),
-                        child: const Text('🫂', style: TextStyle(fontSize: 92)),
+                        child: const Text('🔥', style: TextStyle(fontSize: 92)),
                       ),
                     ),
                     const SizedBox(height: 22),
@@ -90,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen>
                         'as melhores cantadas pra conquistar 💘',
                         style: GoogleFonts.poppins(
                           fontSize: 14,
-                          color: const Color(0xFFE7FFF3),
+                          color: const Color(0xFFFFE4EC),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
